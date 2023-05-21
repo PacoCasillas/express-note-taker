@@ -12,14 +12,12 @@ const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 
 // Route to handle retrieving all notes
 router.get('/api/notes', (req, res) => {
-  console.info(`${req.method} request received for notes`);
   // Read the contents of 'db.json' file and send it as a response
   readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 // Route to handle saving a new note
 router.post('/api/notes', (req, res) => {
-  console.info(`${req.method} request received to add a note`);
   console.log(req.body);
 
   // Extract the 'title' and 'text' from the request body
@@ -35,7 +33,8 @@ router.post('/api/notes', (req, res) => {
     // Append the new note to 'db.json' file
     readAndAppend(newNote, './db/db.json');
     // Send a success response
-    res.json(`Note added successfully 🚀`);
+    res.json(`Note added successfully ✔️`);
+    console.info(`Note added successfully ✔️`);
   } else {
     // Send an error response
     res.error('Error in adding the new note.');
@@ -44,20 +43,36 @@ router.post('/api/notes', (req, res) => {
 
 // Route to handle deleting a note
 router.delete('/api/notes/:id', (req, res) => {
-  // Read the contents of 'db.json' file
-  const data = fs.readFileSync('db/db.json', 'utf8');
-  const dataJson = JSON.parse(data);
-  // Filter out the note with the provided 'id'
-  const newNotes = dataJson.filter((note) => {
-    return note.id !== req.params.id;
+  // Read the contents of 'db.json' file asynchronously
+  fs.readFile('db/db.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+
+    const dataJson = JSON.parse(data);
+
+    // Filter out the note with the provided 'id'
+    const newNotes = dataJson.filter((note) => note.id !== req.params.id);
+
+    // Write the updated notes to 'db.json' file asynchronously
+    fs.writeFile('db/db.json', JSON.stringify(newNotes), (err) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal server error' });
+        return;
+      }
+
+      // Send a success message as a JSON response
+      console.info(`Note deleted successfully ❌`);
+      res.status(200).json({ message: 'Note deleted successfully ❌' });
+    });
   });
-  // Write the updated notes to 'db.json' file
-  fs.writeFileSync('db/db.json', JSON.stringify(newNotes));
-  
-  // Send a success message as a JSON response
-  console.info(`${req.method} Note deleted successfully.`);
-  res.status(200).json({ message: 'Note deleted successfully.' });
 });
+
+// Export the router to be used in other modules
+module.exports = router;
 
 // Export the router to be used in other modules
 module.exports = router;
