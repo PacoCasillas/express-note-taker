@@ -3,8 +3,8 @@ const express = require('express');
 const path = require('path');
 
 // Import custom route modules
-const api_routes = require('./express-notes/routes/api-routes');
-const html_routes = require('./express-notes/routes/html-routes');
+const api_routes = require('./routes/api-routes');
+const html_routes = require('./routes/html-routes');
 
 // set the port 
 const PORT = process.env.PORT || 3001;
