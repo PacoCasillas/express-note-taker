@@ -19,6 +19,10 @@ I have created an application that will allow users to write notes and save them
 
 To use this application you can download this github repository either by cloning or downloading the zip file
 
+Live application : https://francisco-express-note-taker.herokuapp.com/index.html
+
+Github repo : https://github.com/PacoCasillas/express-note-taker
+
 ## Usage
 
 This project focuses mainly on backend production so you will need a server to run this program 
