@@ -31,7 +31,7 @@ You would then want to click on the "Get Started" button to go to the next page,
 
 ![notes page](/README-pictures/notes-page.png)
 
-Once a note is completed, it can eb saved by clicking on the save button on the top right hand side, or click on the plus button to start a new note:
+Once a note is completed, it can be saved by clicking on the save button on the top right hand side, or click on the plus button to start a new note:
 
 ![example of a note being taken on the application](/README-pictures/note-example.png)
 
