@@ -23,8 +23,27 @@ To use this application you can download this github repository either by clonin
 
 This project focuses mainly on backend production so you will need a server to run this program 
 
+When this application is first opened, this is the homepage that you would be greeted with:
 
-## License
+![homepage](/README-pictures/home-page.png)
+
+You would then want to click on the "Get Started" button to go to the next page, which will display the following:
+
+![notes page](/README-pictures/notes-page.png)
+
+Once a note is completed, it can eb saved by clicking on the save button on the top right hand side, or click on the plus button to start a new note:
+
+![example of a note being taken on the application](/README-pictures/note-example.png)
+
+After a note is saved, it will appear on the column to the left side of the page. Which can then be deleted by clicking on the trash can icon:
+
+![Saved note plus how to delete](/README-pictures/note-taken.png)
+
+Finally once the note is deleted, it will dissapear from the column of the left side of the screen:
+
+![Deleted note](/README-pictures/deleted-note.png)
+
+## License 
 
 The license used in this project is: MIT License
 
